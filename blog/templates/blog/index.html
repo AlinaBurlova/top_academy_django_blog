@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-</head>
-<body>
-    <h2>Это Главная Html-страничка</h2>
-</body>
-</html>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h2>Список постов</h2>
+<a href="{% url 'blog:post_list' %}">Посты</a>
+
+{% endblock content %}
