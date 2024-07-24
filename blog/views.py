@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .forms import PostForm
 from .models import Post
-# Create your views here.
 
 
 def root(request):
@@ -54,3 +53,34 @@ def post_list(request):
         'posts': posts,
     }
     return render(request, template_name='blog/posts.html', context=context)
+
+
+def post_detail(request, pk):
+    # получаем объект с заданным pk
+    post = Post.objects.get(pk=pk)
+    context = {
+        'title': "Информация о посте",
+        'post': post,
+    }
+    return render(request, template_name='blog/post_detail.html', context=context)
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(data=request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+
+            return post_list(request)
+    else:
+        form = PostForm(instance=post)
+        context = {
+            'form': form,
+            'title': "Редактировать пост",
+        }
+        return render(request, template_name='blog/post_edit.html', context=context)
+
+
+
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
