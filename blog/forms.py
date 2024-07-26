@@ -7,7 +7,7 @@ from .models import Post
 #     text = forms.CharField(label="Текст поста", widget=forms.Textarea())
 
 class PostForm(forms.ModelForm):
-    class Mets:
+    class Meta:
         model = Post
         fields = ['author', 'title', 'text']  # вручную (что используем)
         # fields = '__all__'  # все сразу, НО! так не надо

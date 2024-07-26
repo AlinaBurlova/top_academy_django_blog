@@ -70,15 +70,15 @@ def post_edit(request, pk):
         form = PostForm(data=request.POST, instance=post)
         if form.is_valid():
             form.save()
-
             return post_list(request)
     else:
         form = PostForm(instance=post)
-        context = {
-            'form': form,
-            'title': "Редактировать пост",
-        }
-        return render(request, template_name='blog/post_edit.html', context=context)
+
+    context = {
+        'form': form,
+        'title': "Редактировать пост",
+    }
+    return render(request, template_name='blog/post_edit.html', context=context)
 
 
 
