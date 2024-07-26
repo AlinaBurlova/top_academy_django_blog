@@ -74,11 +74,11 @@ def post_edit(request, pk):
             return post_list(request)
     else:
         form = PostForm(instance=post)
-        context = {
+    context = {
             'form': form,
             'title': "Редактировать пост",
-        }
-        return render(request, template_name='blog/post_edit.html', context=context)
+    }
+    return render(request, template_name='blog/post_edit.html', context=context)
 
 
 
