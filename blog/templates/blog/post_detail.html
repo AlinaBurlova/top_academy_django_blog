@@ -7,8 +7,12 @@
 <p>Название - {{post.title}}</p>
 <p>Текст поста:</p>
 <p>{{post.text}}</p>
+{% if post.image %}
+    <img src="{{post.image.url}}" width="300px" height="200px">
+{% endif %}
 <br>
 <p>Создан: {{post.created_at}}</p>
+
 <div>
     <a href="{% url 'blog:post_edit' pk=post.id %}" class="btn btn-primary">Редактировать</a>
     <form action="{% url 'blog:post_delete' pk=post.id %}" method="post" style="display: inline;">

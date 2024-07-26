@@ -9,6 +9,6 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['author', 'title', 'text']  # вручную (что используем)
+        fields = ['author', 'title', 'text', 'image']  # вручную (что используем)
         # fields = '__all__'  # все сразу, НО! так не надо
         # exclude = ['created_at']  # вручную (что НЕ используем)
